@@ -31,6 +31,13 @@ def random_response(submission):
 
     return defaults[random_answer];
 
+    for word in text:
+    	if word in yn_words:
+    		return True;
+    	else:
+    		return False;
+
+
 """ Main method. This function sets up the main page by returning an HTML template. """
 @app.route('/', methods = ['GET','POST'])
 def main():
@@ -38,7 +45,7 @@ def main():
     if request.method == 'POST':
         user_input = request.form['submission']
         submission = user_input.split(' ')
-
+        submission = request.form['submission']
         if isQuestion(submission):
 
             if isYesNoQuestion(submission):

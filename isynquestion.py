@@ -8,4 +8,5 @@ import string
 def isYesNoQuestion(text, yn_words):
     text = text.translate(string.punctuation)
     text = text.lower()
+    text = text.split(" ")
     return not set(text).isdisjoint(yn_words)
