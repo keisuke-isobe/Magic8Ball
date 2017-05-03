@@ -4,37 +4,6 @@ import string
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-
-"""
-Function which returns if the input text is a question or not. This is
-determined by checking first if the sentence ends with a question mark.
-If it does, it is assumed that the statement is a question. If it doesn't
-end with a question mark, the function then checks if the statement
-contains any of the words that are associated with a question, if it
-does, it is considered a question.
-"""
-import string
-def isQuestion(text, question_words):
-    text = text.translate(string.punctuation)
-    text = text.lower()
-    if text[-1] == '?':
-        return True
-    else:
-        return not set(text).isdisjoint(question_words)
-
-
-"""
-Function which returns whether or not a passed statement is a yes-no question or
-not. Yes-no questions are asked with the verbs "be," "do," "have," or a modal/
-auxiliary verb. The function here checks whether or not the statement contains
-any of these verbs, and if so, returns true. Otherwise it returns false.
-"""
-def isYesNoQuestion(text, yn_words):
-    text = text.translate(string.punctuation)
-    text = text.lower()
-    text = text.split(" ")
-    return not set(text).isdisjoint(yn_words)
-
 default_positive = ['It is certain', 'It is decidedly so', 'Without a doubt',
 'Yes definitely', 'You may rely on it', 'As I see it, yes', 'Most likely', 'Outlook good',
 'Yes', 'Signs point to yes']
@@ -80,6 +49,7 @@ def isYesNoQuestion(text):
     text = text.translate(string.punctuation)
     text = text.lower()
     text = text.split(" ")
+    
     return not set(text).isdisjoint(yn_words)
 
 
@@ -88,13 +58,6 @@ def random_response(submission):
     random_answer = random.randint(0, 10 + 9)
 
     return defaults[random_answer];
-
-    for word in text:
-        if word in yn_words:
-            return True;
-        else:
-            return False;
-
 
 """ Main method. This function sets up the main page by returning an HTML template. """
 @app.route('/', methods = ['GET','POST'])
@@ -115,7 +78,8 @@ def main():
         else:
             return render_template("main.html", eightballresponse = "That's not a question. I think.");
 
-
+    else:
+        return render_template("main.html", eightballresponse = "You didn't ask me anything.");
 """ This function returns the HTML template for the group members involved in this project."""
 @app.route('/group')
 def group():
