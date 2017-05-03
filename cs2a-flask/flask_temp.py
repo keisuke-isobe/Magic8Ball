@@ -2,7 +2,10 @@
 This flask app presents a webpage which acts as an interactive Magic 8 Ball. It has a
 larger variety of responses (and more ambiguity) than your traditional Magic 8 Ball.
 There are two necessary APIs for this project: the indico.io API which was used in class,
-and the Google Cloud Natural Language Processing API: https://cloud.google.com/natural-language/
+and the Google Cloud Natural Language Processing API. To install indico.io, install pillow
+(pip install Pillow) and (pip install indicoio). If you experience errors, you may need
+to install an older version of Pillow. To install the Google API, follow this link:
+https://cloud.google.com/natural-language/docs/reference/libraries
 
 Something interesting: We used the indic.io and Google Cloud Natural Language Processing API
 to determine the highest importance noun in the user input question if the user input question
