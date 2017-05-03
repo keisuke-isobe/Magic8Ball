@@ -1,3 +1,14 @@
+"""
+This flask app presents a webpage which acts as an interactive Magic 8 Ball. It has a
+larger variety of responses (and more ambiguity) than your traditional Magic 8 Ball.
+There are two necessary APIs for this project: the indico.io API which was used in class,
+and the Google Cloud Natural Language Processing API: https://cloud.google.com/natural-language/
+
+Something interesting: We used the indic.io and Google Cloud Natural Language Processing API
+to determine the highest importance noun in the user input question if the user input question
+was not a simple yes/no question, and used that extracted noun in the Magic 8 Ball's
+vague, non-committal response to make it seem a bit more intelligent. 
+"""
 import random
 import string
 import indicoio
