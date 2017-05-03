@@ -36,8 +36,8 @@ does, it is considered a question.
 """
 
 def isQuestion(submission):
-    text = user_input.translate(string.punctuation)
-    text = user_input.lower()
+    text = submission.translate(string.punctuation)
+    text = submission.lower()
     
     if text[-1] == '?':
         return True
