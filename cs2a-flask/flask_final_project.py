@@ -55,11 +55,7 @@ def isYesNoQuestion(submission):
     text = submission.translate(string.punctuation)
     text = submission.lower()
 
-    for word in text:
-    	if word in yn_words:
-    		return True;
-    	else:
-    		return False;
+    return not set(text).isdisjoint(yn_words);
     	
     
 """ Main method. This function sets up the main page by returning an HTML template. """
