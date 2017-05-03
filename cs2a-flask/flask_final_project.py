@@ -36,10 +36,10 @@ does, it is considered a question.
 """
 
 def isQuestion(submission):
-    """text = user_input.translate(string.punctuation)
-    text = user_input.lower()"""
+    text = user_input.translate(string.punctuation)
+    text = user_input.lower()
     
-    if submission[-1] == '?':
+    if text[-1] == '?':
         return True
     else:
         return False;
@@ -54,8 +54,7 @@ any of these verbs, and if so, returns true. Otherwise it returns false.
 def isYesNoQuestion(submission):
     text = submission.translate(string.punctuation)
     text = submission.lower()
-    
-    """return not set(text).isdisjoint(yn_words)"""
+
     for word in submission:
     	if word in yn_words:
     		return True;
@@ -66,15 +65,6 @@ def isYesNoQuestion(submission):
 """ Main method. This function sets up the main page by returning an HTML template. """
 @app.route('/', methods = ['GET','POST'])
 def main():
-
-    """if request.method == 'POST':
-        submission = request.form['submission']
-        response = random_response(submission);
-        
-        return render_template("main.html", eightballresponse = response);
-    
-    else:
-        return render_template("main.html", eightballresponse = "That's not a question. I think.")"""
         
     if request.method == 'POST':
         user_input = request.form['submission']
@@ -89,24 +79,13 @@ def main():
             else:
                 return render_template("main.html", eightballresponse = "That's not a yes or no question, so I'm not sure. But I think you should.");
         else:
-            """return render_template("main.html", eightballresponse = "That's not a question. I think.");"""
-            return render_template("main.html", eightballresponse = submission);
+            return render_template("main.html", eightballresponse = "That's not a question. I think.");            
     
 """ This function returns the HTML template for the group members involved in this project."""
 @app.route('/group')
 def group():
     return render_template('group.html')
 
-"""@app.route('/calculate',methods=['GET','POST'])
-def r2():
-    if request.method == 'POST':
-        n = request.form['number']
-        factors_list = factors(int(n))
-        
-        return render_template("calculate.html",number=n,factors=factors_list)
-    else:
-        return render_template("calculate.html",number=1,factors=[1])
-"""
 
 if __name__ == '__main__':
     app.run('0.0.0.0',port=3000)
