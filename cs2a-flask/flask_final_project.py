@@ -149,7 +149,7 @@ def main():
                 response = "That's not a yes or no question, so I'm not sure about this answer..."
                 if noun != -1:
                     if (noun == "lunch" or noun == "breakfast" or noun == "dinner"):
-                        response = reponse + "I don't know what you should about " + noun + "."
+                        response = response + "I don't know what you should about " + noun + "."
                     else:
                         response = response + "I don't know what you should do about the " + noun + "."
                 return render_template("main.html", eightballresponse = response);
