@@ -62,7 +62,7 @@ def isYesNoQuestion(text):
 Takes in a text string and returns a random response from a magic 8-ball.
 """
 def random_response(submission):
-    random_answer = random.randint(0, 10 + 9)
+    random_answer = random.randint(0, 10) + random.randint(0,9)
     return defaults[random_answer];
 
 """
