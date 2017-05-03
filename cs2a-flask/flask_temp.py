@@ -7,7 +7,7 @@ and the Google Cloud Natural Language Processing API: https://cloud.google.com/n
 Something interesting: We used the indic.io and Google Cloud Natural Language Processing API
 to determine the highest importance noun in the user input question if the user input question
 was not a simple yes/no question, and used that extracted noun in the Magic 8 Ball's
-vague, non-committal response to make it seem a bit more intelligent. 
+vague, non-committal response to make it seem a bit more intelligent.
 """
 import random
 import string
@@ -117,21 +117,13 @@ def wordForm(sorted_keywords):
     return words
 
 """
-This function returns the highest scoring verb in keyword.
-"""
-def firstVerb(wordForm):
-    for token in wordForm:
-        if wordForm[token] == "VERB":
-            return token
-
-"""
 This function returns the highest scoring noun in wotdForm.
 """
 def firstNoun(wordForm):
     for token in wordForm:
         if wordForm[token] == "NOUN":
             return token
-
+    return -1
 """
 Main method. This function sets up the main page by returning an HTML template.
 """
@@ -150,10 +142,9 @@ def main():
                 keywords = keyword(submission)
                 sorted_keywords = sortKeywords(keywords)
                 words = wordForm(sorted_keywords)
-                verb = firstVerb(words)
                 noun = firstNoun(words)
                 response = "That's not a yes or no question, so I'm not sure about this answer..."
-                if len(noun) != 0:
+                if noun != -1:
                     if (noun == "lunch" or noun == "breakfast" or noun == "dinner"):
                         response = reponse + "I don't know what you should about " + noun + "."
                     else:
@@ -164,6 +155,7 @@ def main():
 
     else:
         return render_template("main.html", eightballresponse = "You didn't ask me anything.");
+
 """ This function returns the HTML template for the group members involved in this project."""
 @app.route('/group')
 def group():
