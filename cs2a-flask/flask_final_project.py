@@ -55,7 +55,7 @@ def isYesNoQuestion(submission):
     text = submission.translate(string.punctuation)
     text = submission.lower()
 
-    for word in submission:
+    for word in text:
     	if word in yn_words:
     		return True;
     	else:
@@ -67,8 +67,7 @@ def isYesNoQuestion(submission):
 def main():
         
     if request.method == 'POST':
-        user_input = request.form['submission']
-        submission = user_input.split(' ')
+        submission = request.form['submission']
         
         if isQuestion(submission):
             
