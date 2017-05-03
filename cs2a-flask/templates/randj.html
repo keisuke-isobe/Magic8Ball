@@ -1,0 +1,11 @@
+<html>
+	<title>Lines containing {{ word }}</title>
+	<body>
+	<h2>The word {{word}} appears in the following lines of Romeo and Juliet </h2>
+<ol>
+{% for item in the_lines %}
+	<li>{{ item }}</li>
+{% endfor %}
+</ol>
+</body>
+</html>

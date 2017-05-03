@@ -1,0 +1,18 @@
+<html>
+	<title>Factors of {{ number }}</title>
+	<body>
+  <!-- This uses a form to get the number to factor! -->
+
+	<h2>The factors of {{ number }} are:</h2>
+<ul>
+{% for item in factors %}
+	<li>{{ item }}</li>
+{% endfor %}
+</ul>
+<hr>
+<form method="post">
+  Enter another number to factor: <input type="text" name="number"><br>
+  <input type="submit">
+</form>
+</body>
+</html>

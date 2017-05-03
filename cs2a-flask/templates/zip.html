@@ -1,0 +1,31 @@
+<html>
+	<title>Home with zipcode {{ zip}}</title>
+	<body>
+  <!-- This uses a form to get the number to factor! -->
+
+	<h2>Home with zipcode {{ zip}}</h2>
+<ol>
+
+{% for item in house_list %}
+  <li>
+		<ul>
+    {% for val in item %}
+     <li>
+	    {{val}}
+     </li>
+    {% endfor %}
+   </ul>
+  </li>
+{% endfor %}
+</ol>
+
+{% for item in zips %}
+  {{item}}
+ {% endfor %}
+<hr>
+<form method="post">
+  Enter another zipcode: <input type="text" name="zip"><br>
+  <input type="submit">
+</form>
+</body>
+</html>
