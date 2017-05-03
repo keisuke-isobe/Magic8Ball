@@ -5,7 +5,7 @@ There are two necessary APIs for this project: the indico.io API which was used 
 and the Google Cloud Natural Language Processing API. To install indico.io, install pillow
 (pip install Pillow) and (pip install indicoio). If you experience errors, you may need
 to install an older version of Pillow. To install the Google API, follow this link:
-https://cloud.google.com/natural-language/docs/reference/libraries
+To install the Google API, follow this link: https://cloud.google.com/natural-language/docs/reference/libraries
 
 Something interesting: We used the indic.io and Google Cloud Natural Language Processing API
 to determine the highest importance noun in the user input question if the user input question
@@ -123,10 +123,11 @@ def wordForm(sorted_keywords):
 This function returns the highest scoring noun in wotdForm.
 """
 def firstNoun(wordForm):
-    for token in wordForm:
-        if wordForm[token] == "NOUN":
-            return token
-    return -1
+    nouns = [token for token in wordForm if wordForm[token] == "NOUN"]
+    if len(nouns) == 0:
+        return -1
+    else:
+        return nouns[0]
 """
 Main method. This function sets up the main page by returning an HTML template.
 """
@@ -146,7 +147,7 @@ def main():
                 sorted_keywords = sortKeywords(keywords)
                 words = wordForm(sorted_keywords)
                 noun = firstNoun(words)
-                response = "That's not a yes or no question, so I'm not sure about this answer..."
+                response = "That's not a yes or no question, so I'm not sure if I can answer..."
                 if noun != -1:
                     if (noun == "lunch" or noun == "breakfast" or noun == "dinner"):
                         response = response + "I don't know what you should about " + noun + "."
