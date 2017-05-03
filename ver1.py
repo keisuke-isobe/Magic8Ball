@@ -5,12 +5,30 @@ Very simple, takes user input question, and returns a random answer from the set
 of 20 standard Magic 8 Ball responses.
 
 """
-
+from isquestion import isQuestion
+from isynquestion import isYesNoQuestion
 import random
 import indicoio
 indicoio.config.api_key = 'f954e20684d172b9ebcc869bc9fac4b1'
-import semantria
-session = semantria.Session('8cf39f38-8d39-4e1c-8f31-52514d897ca2','dea49cf1-88a2-4a69-81eb-0859b0a20a98')
+from google.cloud import language
+language_client = language.Client()
+
+text = "Who stole my bike?"
+document = language_client.document_from_text(text)
+
+wh_words = ["who", "what", "when", "where", "which", "who", "whom", "whose", "why", "how"]
+yn_words = ["can", "could", "may", "might", "shall", "should", "will", "would", "must", "ought", "be", "do", "have"]
+question_words = wh_words + yn_words
+print(isQuestion(text, question_words))
+print(isYesNoQuestion(text, yn_words))
+keywords = indicoio.keywords(text, top_n = 4))
+print(vars(keywords))
+print(keywords)
+
+annotations = document.annotate_text().tokens
+print(type(annotations))
+for token in annotations:
+    print(token.part_of_speech, token.text_content)
 
 default_positive = ['It is certain', 'It is decidedly so', 'Without a doubt',
 'Yes definitely', 'You may rely on it', 'As I see it, yes', 'Most likely', 'Outlook good',
@@ -23,9 +41,6 @@ default_negative = ['Don\'t count on it', 'My reply is no', 'My sources say no',
 'Outlook not so good', 'Very doubtful']
 
 defaults = default_positive + default_neutral + default_negative
-
-answers = []
-
-user_input = input('Ask any question you would like to ask the Magic 8 Ball: ')
+#user_input = input('Ask any question you would like to ask the Magic 8 Ball: ')
 random_answer = random.randint(0,19)
 print(defaults[random_answer])

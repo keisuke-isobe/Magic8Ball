@@ -1,8 +1,6 @@
 """
 Minimum Viable Product Magic 8 Ball
 
-Group Members: Keisuke Isobe, Iris Wang, Chi Duong, Jamie Soohoo
- 
 Very simple, takes user input question, and returns a random answer from the set
 of 20 standard Magic 8 Ball responses.
 
