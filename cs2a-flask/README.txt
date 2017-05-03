@@ -4,5 +4,5 @@ This program is a Flask app, which presents a website that simulates a slightly 
 
 Running this program has several prerequisites. Indico.io API and Google Cloud Natural Language API will need to be installed first. Indico.io API can be installed using pip install Pillow == 4.0.0, and pip install indicoio. To install the Google API, follow this link: https://cloud.google.com/natural-language/docs/reference/libraries
 
-You can run this app with python flask_final-project.py and going to localhost:3000 or python3, on mac. 
+You can run this app with python flask_final-project.py and going to localhost:3000 or python3, on mac. Try asking it something like "Who stole my dinner?" or "Where's my bike?"
 
